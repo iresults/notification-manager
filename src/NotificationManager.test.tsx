@@ -8,6 +8,9 @@ class TestError {
 const getNotificationManager = (): NotificationManagerInterface<string, DataType> => {
     const notMan = new NotificationManager<string, DataType>();
     notMan.setLogger({
+        error: () => {
+            // noop
+        },
         warn: () => {
             // noop
         },

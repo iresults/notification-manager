@@ -6,6 +6,7 @@ type ErrorHandler<T, D extends object> = (event: NotificationEvent<T, D>, error:
 interface LoggerInterface {
     log: Function;
     warn: Function;
+    error: Function;
 }
 
 export class NotificationManager<T, D extends object> implements NotificationManagerInterface<T, D> {
@@ -21,8 +22,8 @@ export class NotificationManager<T, D extends object> implements NotificationMan
 
         this._logger = (window || global).console;
 
-        this._errorHandler = () => {
-            // noop
+        this._errorHandler = (event: NotificationEvent<T, D>, error: any) => {
+            this._logger.error(error);
         };
     }
 
